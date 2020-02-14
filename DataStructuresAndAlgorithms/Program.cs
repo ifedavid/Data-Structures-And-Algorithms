@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace DataStructuresAndAlgorithms
 {
@@ -8,9 +9,31 @@ namespace DataStructuresAndAlgorithms
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            //DynamicArray<string> dynamicArray = new DynamicArray<string>();
+
+            //for(int i=0; i<=10; i++)
+            //{
+            //    dynamicArray.Add("My name is " + i);
+            //}
+
+            //dynamicArray.Add("I'm different tho", 6);
+
+
+            //for (int i=0; i<dynamicArray.Length(); i++)
+            //{
+            //    Console.WriteLine("The element at index " + i + " is " + dynamicArray.Get(i));
+            //}
+
+
         }
     }
 
+
+    /// <summary>
+    /// Dynamic array class. Allows you to add elements and remove them.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     class DynamicArray<T>
     {
         private T[] arr;
@@ -23,14 +46,14 @@ namespace DataStructuresAndAlgorithms
         }
         public DynamicArray(int capacity)
         {
-         
+
             //Cannot initialize arry of length 0
             if (capacity < 0)
             {
-                throw new ArgumentOutOfRangeException ("Array can't be of size 0");
+                throw new ArgumentOutOfRangeException("Array can't be of size 0");
             }
             this.Capacity = capacity;
-            arr = new T[capacity]; 
+            arr = new T[capacity];
         }
 
         /// <summary>
@@ -86,7 +109,7 @@ namespace DataStructuresAndAlgorithms
         /// </summary>
         public void Clear()
         {
-            for(int i =0; i<Capacity; i++)
+            for (int i = 0; i < Capacity; i++)
             {
                 arr[i] = default(T);
             }
@@ -107,7 +130,7 @@ namespace DataStructuresAndAlgorithms
 
                 T[] new_arr = new T[Capacity];
 
-                for (int i =0; i<length; i++)
+                for (int i = 0; i < length; i++)
                 {
                     new_arr[i] = arr[i];
                 }
@@ -123,42 +146,31 @@ namespace DataStructuresAndAlgorithms
         /// </summary>
         /// <param name="index"></param>
         /// <param name="elem"></param>
-        public void Add(int index, T elem)
+        public void Add(T elem, int index)
         {
-            //Check if the static array is full. If it is, create an array of bigger capacity and clone the static array to the new array created.
-            if (length +1 >= Capacity)
+            T[] new_arr = new T[length + 1];
+
+            //Add all elements from 0 to current index to new array
+            for (int i = 0; i < index; i++)
             {
-                if (Capacity == 0) Capacity = 1;
-                else Capacity *= 2;
-
-                T[] new_arr = new T[Capacity];
-
-                //Add all elements from 0 to current index to new array
-                for (int i = 0; i< index; i++)
-                {
-                    new_arr[i] = arr[i];
-                }
-
-                //Add element to specified index.
-                new_arr[index] = elem;
-
-                //Shift all remaining elements to the right index
-                for ( int i =index; i< length-index; i++)
-                {
-                    new_arr[index + 1] = arr[index];
-                }
-
-                arr = new_arr;
+                new_arr[i] = arr[i];
             }
 
-            //Shift all elements to the right.
-            for (int i = index; i <= (length - index) ; i++)
+            //Add element to specified index.
+            new_arr[index] = elem;
+
+            //Shift all remaining elements to the right.
+            for (int i = index; i < length; i++)
             {
-                arr[index + 1] = arr[index];
+                new_arr[i + 1] = arr[i];
             }
 
-            //Change element of specified index.
-            arr[index] = elem;
+            arr = new_arr;
+            //Array length is equal to new length.
+            length = arr.Length;
+
+            //Array capacity is equal to new length. This is done for the ordinary add method.
+            Capacity = length;
 
         }
 
@@ -171,11 +183,26 @@ namespace DataStructuresAndAlgorithms
         {
             T data = arr[index];
 
-            //Shift all elements to the left.
-            for (int i = index; i < (length - index); i++)
+            T[] new_arr = new T[length - 1];
+
+            //Add all elements from 0 to current index to new array
+            for (int i = 0; i < index; i++)
             {
-                arr[index] = arr[index + 1];
+                new_arr[i] = arr[i];
             }
+
+            //Shift all elements to the left. Lenght is reduced by 1 because new array is an index less.
+            for (int i = index; i < length - 1; i++)
+            {
+                new_arr[i] = arr[i + 1];
+            }
+
+            arr = new_arr;
+            //Array length is equal to new length.
+            length = arr.Length;
+
+            //Array capacity is equal to new length. This is done for the ordinary add method.
+            Capacity = length;
 
             return data;
 
@@ -188,7 +215,7 @@ namespace DataStructuresAndAlgorithms
         /// <returns></returns>
         public bool Remove(object elem)
         {
-            for (int i =0; i< length; i++)
+            for (int i = 0; i < length; i++)
             {
                 if (arr[i].Equals(elem))
                 {
@@ -201,11 +228,11 @@ namespace DataStructuresAndAlgorithms
 
 
         /// <summary>
-        /// Checks if the array contains the specified element
+        /// Checks if the array contains the specified element and returns the first instance
         /// </summary>
         /// <param name="elem"></param>
         /// <returns></returns>
-        public bool contains (object elem)
+        public bool contains(object elem)
         {
             for (int i = 0; i < length; i++)
             {
@@ -217,13 +244,13 @@ namespace DataStructuresAndAlgorithms
 
 
         /// <summary>
-        /// Returns the index of a particular element.
+        /// Returns the index of the first instance of a particular element.
         /// </summary>
         /// <param name="elem"></param>
         /// <returns></returns>
         public int Find(object elem)
         {
-            for (int i=0; i< length; i++)
+            for (int i = 0; i < length; i++)
             {
                 if (arr[i].Equals(elem)) return i;
             }
@@ -231,4 +258,9 @@ namespace DataStructuresAndAlgorithms
             return -1;
         }
     }
+}
+
+class Stack<T>
+{
+
 }
