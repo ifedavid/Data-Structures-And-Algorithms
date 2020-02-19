@@ -16,7 +16,7 @@ namespace DataStructuresAndAlgorithms.Data_Structures
 
         public DynamicArray()
         {
-            arr = new T[16];
+            arr = new T[16];           
         }
         public DynamicArray(int capacity)
         {
