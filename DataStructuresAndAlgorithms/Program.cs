@@ -28,38 +28,50 @@ namespace DataStructuresAndAlgorithms
              }
              */
 
+
+            /*  Data_Structures.LinkedList<int> linkedList = new Data_Structures.LinkedList<int>();
+
+                linkedList.AddLast(5);
+                linkedList.AddLast(10);
+                linkedList.AddFirst(30);
+
+                linkedList.Traverse();
+
+                Data_Structures.LinkedListNode<int> linkedList1 = new Data_Structures.LinkedListNode<int>(25, null, null);
+
+                Data_Structures.LinkedListNode<int> linkedList2 = new Data_Structures.LinkedListNode<int>(245, null, null);
+
+                Data_Structures.LinkedListNode<int> linkedList3 = new Data_Structures.LinkedListNode<int>(2805, null, null);
+
+
+                linkedList.AddLast(linkedList1);
+
+                linkedList.AddLast(1990);
+
+                linkedList.AddBefore(linkedList1, linkedList2);
+                linkedList.RemoveBefore(linkedList2);
+                linkedList.AddAfter(linkedList2, linkedList3);
+                linkedList.AddLast(7675);
+                linkedList.Remove(3);
+
+                Console.WriteLine("");
+                Console.WriteLine("");
+
+
+                linkedList.Traverse(); */
+            System.Collections.Stack stack = new System.Collections.Stack();
+            Data_Structures.Stack myStack = new Data_Structures.Stack();
+
+            stack.Push("Happy");
+            stack.Push(334);
            
-          /*Data_Structures.LinkedList<int> linkedList = new Data_Structures.LinkedList<int>();
+           var stuff = stack.Pop();
 
-            linkedList.AddLast(5);
-            linkedList.AddLast(10);
-            linkedList.AddFirst(30);
+            Console.WriteLine(stuff);
 
-            linkedList.Traverse();
-
-            Data_Structures.LinkedListNode<int> linkedList1 = new Data_Structures.LinkedListNode<int>(25, null, null);
-
-            Data_Structures.LinkedListNode<int> linkedList2 = new Data_Structures.LinkedListNode<int>(245, null, null);
-
-            Data_Structures.LinkedListNode<int> linkedList3 = new Data_Structures.LinkedListNode<int>(2805, null, null);
-
-
-            linkedList.AddLast(linkedList1);
-
-            linkedList.AddLast(1990);
-
-            linkedList.AddBefore(linkedList1, linkedList2);
-            linkedList.RemoveBefore(linkedList2);
-            linkedList.AddAfter(linkedList2, linkedList3);
-            linkedList.AddLast(7675);
-            linkedList.RemoveAfter(linkedList2);
-
-            Console.WriteLine("");
-            Console.WriteLine("");
-
-
-            linkedList.Traverse(); */
-
+            myStack.Push("Happy");
+            myStack.Push(2334);
+            myStack.Traverse();
 
 
 

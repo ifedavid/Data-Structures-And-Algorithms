@@ -8,9 +8,9 @@ namespace DataStructuresAndAlgorithms.Data_Structures
     /// Doubly LinkedList Node. Contains the Data and pointers to the Next and Previous Node.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class LinkedListNode<T>
+    class LinkedListNode<T> 
     {
-       internal T Data { get; set; }
+        internal T Data { get; set; }
        internal LinkedListNode<T> Next { get; set; }
        internal LinkedListNode<T> Prev { get; set; }
 
@@ -167,8 +167,9 @@ namespace DataStructuresAndAlgorithms.Data_Structures
         /// <summary>
         /// Removes the first Node in the LinkedList.
         /// </summary>
-        public void RemoveFirst()
+        public T RemoveFirst()
         {
+            LinkedListNode<T> firstNode = Head;
             if (isEmpty())
             {
                 throw new NullReferenceException("Can't remove a node from a null list");
@@ -178,9 +179,12 @@ namespace DataStructuresAndAlgorithms.Data_Structures
                 LinkedListNode<T> newHead = Head.Next;
                 newHead.Prev = null;
                 Head = newHead;
+               
             }
             Size--;
+            return firstNode.Data;
         }
+
 
         /// <summary>
         /// Removes the Last Node in the LinkedList.
@@ -231,6 +235,48 @@ namespace DataStructuresAndAlgorithms.Data_Structures
             return -1;
         }
 
+
+        /// <summary>
+        /// Searches the LinkedList for a particular object item and returns the Index
+        /// </summary>
+        /// <param name="nodeItem"></param>
+        /// <returns></returns>
+        public int Find(T item)
+        {
+            if (Head.Data.Equals(item))
+            {
+                return 0;
+            }
+            if (Tail.Data.Equals(item))
+            {
+                return Size - 1;
+            }
+
+            LinkedListNode<T> trav = Head;
+            int index = 0;
+            while (trav != null)
+            {
+                if (trav.Data.Equals(item))
+                {
+                    return index;
+                }
+                index++;
+                trav = trav.Next;
+            }
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Checks if the LinkedList contains the Node.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public bool Contains(LinkedListNode<T> node)
+        {
+            return Find(node) >= 0;
+        }
+
         /// <summary>
         /// Returns every node data in the LinkedList and their Index.
         /// </summary>
@@ -250,7 +296,7 @@ namespace DataStructuresAndAlgorithms.Data_Structures
 
             for(int i =0; i<arr.Length; i++)
             {
-                Console.WriteLine("Item " + i + " in the list has value " + arr[i]);
+                Console.WriteLine("Item " + i + " has value " + arr[i]);
             }
         }
 
@@ -320,8 +366,16 @@ namespace DataStructuresAndAlgorithms.Data_Structures
         /// <returns></returns>
         public bool Remove(LinkedListNode<T> SelectNode)
         {
-            if (SelectNode == Head) return true;
-            if (SelectNode == Tail) return true;
+            if (SelectNode == Head)
+            {
+                RemoveFirst();
+                return true;
+            }
+            if (SelectNode == Tail)
+            {
+                RemoveLast();
+                return true;
+            }
 
             LinkedListNode<T> trav = Head.Next;
 
@@ -329,10 +383,50 @@ namespace DataStructuresAndAlgorithms.Data_Structures
             {
                 if (trav == SelectNode)
                 {
+                    LinkedListNode<T> previousNode = SelectNode.Prev;
+                    LinkedListNode<T> nextNode = SelectNode.Next;
+
+                    previousNode.Next = nextNode;
+                    nextNode.Prev = previousNode;
                     return true;
                 }
                 trav = trav.Next;
             }
+            return false;
+        }
+
+        /// <summary>
+        /// Removes a Node at a particular index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public bool Remove(int index)
+        {
+            if (index == 0)
+            {
+                RemoveFirst();
+                return true;
+            }
+
+            if (index == Size - 1)
+            {
+                RemoveLast();
+                return true;
+            }
+
+            LinkedListNode<T> trav = Head;
+            int i = 0;
+            while (trav != null)
+            {
+                if (i == index)
+                {
+                    Remove(trav);
+                    return true;
+                }
+                i++;
+                trav = trav.Next;
+            }
+
             return false;
         }
 
