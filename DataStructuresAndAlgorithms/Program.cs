@@ -59,23 +59,57 @@ namespace DataStructuresAndAlgorithms
 
 
                 linkedList.Traverse(); */
-            System.Collections.Stack stack = new System.Collections.Stack();
-            Data_Structures.Stack myStack = new Data_Structures.Stack();
+            // System.Collections.Stack stack = new System.Collections.Stack();
+            // Data_Structures.Stack myStack = new Data_Structures.Stack();
 
-            stack.Push("Happy");
-            stack.Push(334);
-           
-           var stuff = stack.Pop();
+            // stack.Push("Happy");
+            // stack.Push(334);
 
-            Console.WriteLine(stuff);
+            //var stuff = stack.Pop();
 
-            myStack.Push("Happy");
-            myStack.Push(2334);
-            myStack.Traverse();
+            // Console.WriteLine(stuff);
+
+            // myStack.Push("Happy");
+            // myStack.Push(2334);
+            // myStack.Traverse();
+
+            //int j = 0;
+            //int[] stuffer = new int[25];
+
+            //for (int i =0; i<stuffer.Length; i++)
+            //{
+
+            //    stuffer[i] = j;
+            //    j = j + 100;
+            //}
+
+            //foreach (int i in stuffer)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
+            //int value2 = BinarySearch(stuffer, 1500);
 
 
+            //Console.WriteLine( value2 );
+
+
+            //Heap myheap = new Heap();
+            //myheap.Insert(6);
+            //myheap.Insert(7);
+            //myheap.Insert(12);
+            //myheap.Insert(10);
+            //myheap.Insert(15);
+            //myheap.Insert(17);
+
+            //myheap.Insert(5);
+
+            //myheap.traverse();
+
+            //Console.Read();
 
         }
+
     }
 
 

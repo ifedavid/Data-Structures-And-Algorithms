@@ -231,6 +231,12 @@ namespace DataStructuresAndAlgorithms.Data_Structures
 
             return -1;
         }
+
+
+        //public int BinarySearch(DynamicArray<int> array, int elem)
+        //{
+            
+        //}
     }
 
 }

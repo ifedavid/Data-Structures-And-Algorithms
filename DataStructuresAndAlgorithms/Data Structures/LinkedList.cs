@@ -10,7 +10,7 @@ namespace DataStructuresAndAlgorithms.Data_Structures
     /// <typeparam name="T"></typeparam>
     class LinkedListNode<T> 
     {
-        internal T Data { get; set; }
+       internal T Data { get; set; }
        internal LinkedListNode<T> Next { get; set; }
        internal LinkedListNode<T> Prev { get; set; }
 
@@ -268,6 +268,59 @@ namespace DataStructuresAndAlgorithms.Data_Structures
         }
 
         /// <summary>
+        /// Gets the data in the node at a particular index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public T GetElement(int index)
+        {
+            if (index == 0) return Head.Data;
+
+            if (index == Size - 1) return Tail.Data;
+
+            LinkedListNode<T> trav = Head;
+            int i = 0;
+            while (trav != null)
+            {
+                if (i == index)
+                {
+                    return trav.Data;
+                }
+                i++;
+                trav = trav.Next;
+            }
+
+            return default(T);
+        }
+
+
+        /// <summary>
+        /// Gets the node at a particular index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public LinkedListNode<T> GetNode(int index)
+        {
+            if (index == 0) return Head;
+
+            if (index == Size - 1) return Tail;
+
+            LinkedListNode<T> trav = Head;
+            int i = 0;
+            while (trav != null)
+            {
+                if (i == index)
+                {
+                    return trav;
+                }
+                i++;
+                trav = trav.Next;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Checks if the LinkedList contains the Node.
         /// </summary>
         /// <param name="node"></param>
@@ -275,6 +328,11 @@ namespace DataStructuresAndAlgorithms.Data_Structures
         public bool Contains(LinkedListNode<T> node)
         {
             return Find(node) >= 0;
+        }
+
+        public bool Contains(T item)
+        {
+            return Find(item) >= 0;
         }
 
         /// <summary>
@@ -395,12 +453,25 @@ namespace DataStructuresAndAlgorithms.Data_Structures
             return false;
         }
 
+
+        /// <summary>
+        /// Searches the LinkedList and Removes the first occurence of Selected item. Uses the find method to check for the index of the item and uses the RemoveAt method to remove the item
+        /// with the given index.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        public bool Remove(T item)
+        {
+           int index = Find(item);
+           return RemoveAt(index);
+        }
+
         /// <summary>
         /// Removes a Node at a particular index.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public bool Remove(int index)
+        public bool RemoveAt(int index)
         {
             if (index == 0)
             {
@@ -429,6 +500,9 @@ namespace DataStructuresAndAlgorithms.Data_Structures
 
             return false;
         }
+
+
+
 
         /// <summary>
         /// Removes the Node before the Selected Node.
